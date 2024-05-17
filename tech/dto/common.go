@@ -2,7 +2,7 @@ package dto
 
 import (
 	"fmt"
-	"github.com/EmirShimshir/marketplace-domain/domain"
+	"github.com/EmirShimshir/marketplace-core/domain"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"golang.org/x/text/cases"

@@ -1,7 +1,7 @@
 package tech
 
 import (
-	"github.com/EmirShimshir/marketplace-port/port"
+	"github.com/EmirShimshir/marketplace-core/port"
 )
 
 type Handler struct {

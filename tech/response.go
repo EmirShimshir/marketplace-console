@@ -3,7 +3,7 @@ package tech
 import (
 	"errors"
 	"fmt"
-	"github.com/EmirShimshir/marketplace-domain/domain"
+	"github.com/EmirShimshir/marketplace-core/domain"
 )
 
 var (

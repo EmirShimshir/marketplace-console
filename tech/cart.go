@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/EmirShimshir/marketplace-console/tech/dto"
-	"github.com/EmirShimshir/marketplace-domain/domain"
-	"github.com/EmirShimshir/marketplace-port/port"
+	"github.com/EmirShimshir/marketplace-core/domain"
+	"github.com/EmirShimshir/marketplace-core/port"
 	"github.com/guregu/null"
 	log "github.com/sirupsen/logrus"
 )

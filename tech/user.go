@@ -3,7 +3,7 @@ package tech
 import (
 	"context"
 	"github.com/EmirShimshir/marketplace-console/tech/dto"
-	"github.com/EmirShimshir/marketplace-port/port"
+	"github.com/EmirShimshir/marketplace-core/port"
 	log "github.com/sirupsen/logrus"
 )
 

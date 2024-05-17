@@ -2,7 +2,7 @@ package tech
 
 import (
 	"fmt"
-	"github.com/EmirShimshir/marketplace-domain/domain"
+	"github.com/EmirShimshir/marketplace-core/domain"
 	log "github.com/sirupsen/logrus"
 	"os"
 )

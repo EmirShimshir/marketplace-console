@@ -2,7 +2,7 @@ package dto
 
 import (
 	"fmt"
-	"github.com/EmirShimshir/marketplace-domain/domain"
+	"github.com/EmirShimshir/marketplace-core/domain"
 )
 
 type OrderShopItemDTO struct {

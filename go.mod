@@ -3,8 +3,7 @@ module github.com/EmirShimshir/marketplace-console
 go 1.22.2
 
 require (
-	github.com/EmirShimshir/marketplace-domain v0.0.0-20240517151020-6fd8bd582f8d
-	github.com/EmirShimshir/marketplace-port v0.0.0-20240517152300-7cca0508d0e6
+	github.com/EmirShimshir/marketplace-core v0.0.0-20240517195449-6971be551840
 	github.com/google/uuid v1.6.0
 	github.com/guregu/null v4.0.0+incompatible
 	github.com/pkg/errors v0.9.1
