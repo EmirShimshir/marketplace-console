@@ -3,7 +3,6 @@ package tech
 import (
 	"context"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 )
 
 func (h *Handler) PayOrder(console *Console) {
@@ -13,9 +12,6 @@ func (h *Handler) PayOrder(console *Console) {
 
 	err := h.payment.ProcessOrderPayment(context.Background(), key)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "PayOrder",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}

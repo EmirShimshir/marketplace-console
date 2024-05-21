@@ -22,9 +22,6 @@ func (h *Handler) CreateCartItem(console *Console) {
 
 	user, err := h.user.GetByID(context.Background(), *console.UserID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "CreateCartItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -45,9 +42,6 @@ func (h *Handler) CreateCartItem(console *Console) {
 		Quantity:  createCartItemDTO.Quantity,
 	})
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "CreateCartItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -89,18 +83,12 @@ func (h *Handler) UpdateCartItem(console *Console) {
 		Quantity: null.IntFrom(updateCartItemDTO.Quantity),
 	})
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "UpdateCartItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	product, err := h.product.GetByID(context.Background(), cartItem.ProductID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "UpdateCartItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -129,11 +117,8 @@ func (h *Handler) DeleteCartItem(console *Console) {
 		return
 	}
 
-	err = h.cart.DeleteCartItem(context.Background(), cartItemID) // TODO FIX
+	err = h.cart.DeleteCartItem(context.Background(), cartItemID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "DeleteCartItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -153,18 +138,12 @@ func (h *Handler) GetCart(console *Console) {
 
 	user, err := h.user.GetByID(context.Background(), *console.UserID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetCart",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	cart, err := h.cart.GetCartByID(context.Background(), user.CartID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetCart",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -178,9 +157,6 @@ func (h *Handler) GetCart(console *Console) {
 	for _, item := range cart.Items {
 		product, err := h.product.GetByID(context.Background(), item.ProductID)
 		if err != nil {
-			log.WithFields(log.Fields{
-				"from": "GetCart",
-			}).Error(err.Error())
 			ErrorResponse(err)
 			return
 		}

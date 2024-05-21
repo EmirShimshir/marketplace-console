@@ -25,7 +25,7 @@ func (h *Handler) SignUp(c *Console) {
 		return
 	}
 
-	err = h.auth.SignUp(context.Background(), port.SignUpParam{ // TODO FIX
+	err = h.auth.SignUp(context.Background(), port.SignUpParam{
 		Name:     signUpDTO.Name,
 		Surname:  signUpDTO.Surname,
 		Email:    signUpDTO.Email,
@@ -34,9 +34,6 @@ func (h *Handler) SignUp(c *Console) {
 		Phone:    signUpDTO.Phone,
 	})
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "SignUp",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -68,27 +65,18 @@ func (h *Handler) SignIn(c *Console) {
 		Password: signInDTO.Password,
 	})
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "SignIn",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	payload, err := h.auth.Payload(context.Background(), authDetails.AccessToken)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "SignIn",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	user, err := h.user.GetByID(context.Background(), payload.UserID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "SignIn",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -107,9 +95,6 @@ func (h *Handler) verifyAuthRole(c *Console, role domain.UserRole) error {
 
 	u, err := h.user.GetByID(context.Background(), *c.UserID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "verifyAuthRole",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return err
 	}

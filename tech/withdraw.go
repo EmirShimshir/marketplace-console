@@ -21,9 +21,6 @@ func (h *Handler) GetWithdrawsAll(console *Console) {
 
 	withdraws, err := h.withdraw.Get(context.Background(), 100, 0)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetWithdrawsAll",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -61,9 +58,6 @@ func (h *Handler) GetWithdrawByShopID(console *Console) {
 
 	withdraws, err := h.withdraw.GetByShopID(context.Background(), shopID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetWithdrawByShopID",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -113,9 +107,6 @@ func (h *Handler) CreateWithdraw(console *Console) {
 		Sum:     sum,
 	})
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "CreateWithdraw",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -158,9 +149,6 @@ func (h *Handler) UpdateWithdraw(console *Console) {
 		Status: &status,
 	})
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "UpdateWithdraw",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}

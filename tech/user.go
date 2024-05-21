@@ -20,9 +20,6 @@ func (h *Handler) GetUser(c *Console) {
 
 	user, err := h.user.GetByID(context.Background(), userID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetUser",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -58,9 +55,6 @@ func (h *Handler) UpdateUser(c *Console) {
 		Phone:   updateUserDTO.Phone,
 	})
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "UpdateUser",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}

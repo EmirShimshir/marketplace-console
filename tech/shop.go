@@ -25,18 +25,12 @@ func (h *Handler) GetShopItem(c *Console) {
 
 	shopItem, err := h.shop.GetShopItemByProductID(context.Background(), productID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetShopItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	product, err := h.product.GetByID(context.Background(), productID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetShopItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -48,9 +42,6 @@ func (h *Handler) GetShopItem(c *Console) {
 func (h *Handler) GetShopItemsAll(c *Console) {
 	shopItems, err := h.shop.GetShopItems(context.Background(), 100, 0)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetShopItemsAll",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -58,9 +49,6 @@ func (h *Handler) GetShopItemsAll(c *Console) {
 	for _, shopItem := range shopItems {
 		product, err := h.product.GetByID(context.Background(), shopItem.ProductID)
 		if err != nil {
-			log.WithFields(log.Fields{
-				"from": "GetShopItemsAll",
-			}).Error(err.Error())
 			ErrorResponse(err)
 			return
 		}
@@ -82,9 +70,6 @@ func (h *Handler) GetShopItemsByShopID(c *Console) {
 
 	shop, err := h.shop.GetShopByID(context.Background(), shopID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetShopItemsByShopID",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -102,9 +87,6 @@ func (h *Handler) GetShopItemsByShopID(c *Console) {
 	for _, shopItem := range shop.Items {
 		product, err := h.product.GetByID(context.Background(), shopItem.ProductID)
 		if err != nil {
-			log.WithFields(log.Fields{
-				"from": "GetShopItemsByShopID",
-			}).Error(err.Error())
 			ErrorResponse(err)
 			return
 		}
@@ -125,9 +107,6 @@ func (h *Handler) GetShopsBySellerID(c *Console) {
 
 	shops, err := h.shop.GetShopBySellerID(context.Background(), *c.UserID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetShopsBySellerID",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -170,6 +149,10 @@ func (h *Handler) CreateShop(console *Console) {
 		Requisites:  createShopDTO.Requisites,
 		Email:       createShopDTO.Email,
 	})
+	if err != nil {
+		ErrorResponse(err)
+		return
+	}
 
 	s := dto.NewShopDTO(shop)
 	s.Print()
@@ -230,18 +213,12 @@ func (h *Handler) CreateShopItem(console *Console) {
 
 	shopItem, err := h.shop.CreateShopItem(context.Background(), param)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "CreateShopItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	product, err := h.product.GetByID(context.Background(), shopItem.ProductID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "CreateShopItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -263,9 +240,6 @@ func (h *Handler) UpdateShopItem(console *Console) {
 
 	shopItem, err := h.shop.GetShopItemByProductID(context.Background(), productID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "UpdateShopItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -289,9 +263,6 @@ func (h *Handler) UpdateShopItem(console *Console) {
 
 	shopItem, err = h.shop.UpdateShopItem(context.Background(), shopItem.ID, param)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "UpdateShopItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -299,9 +270,6 @@ func (h *Handler) UpdateShopItem(console *Console) {
 
 	product, err := h.product.GetByID(context.Background(), shopItem.ProductID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "UpdateShopItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -332,18 +300,12 @@ func (h *Handler) DeleteShopItem(console *Console) {
 
 	shopItem, err := h.shop.GetShopItemByProductID(context.Background(), productID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "DeleteShopItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	err = h.shop.DeleteShopItem(context.Background(), shopItem.ID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "DeleteShopItem",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}

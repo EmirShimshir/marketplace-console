@@ -28,36 +28,24 @@ func (h *Handler) CreateOrderCustomer(console *Console) {
 		Address:    address,
 	})
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "CreateOrderCustomer",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	user, err := h.user.GetByID(context.Background(), *console.UserID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "CreateOrderCustomer",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	err = h.cart.ClearCart(context.Background(), user.CartID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "CreateOrderCustomer",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
 
 	url, err := h.payment.GetOrderPaymentUrl(context.Background(), order.ID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "CreateOrderCustomer",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -76,9 +64,6 @@ func (h *Handler) GetOrderCustomersByCustomerID(console *Console) {
 
 	orders, err := h.order.GetOrderCustomerByCustomerID(context.Background(), *console.UserID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetOrderCustomersByCustomerID",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -98,9 +83,6 @@ func (h *Handler) GetOrderCustomersByCustomerID(console *Console) {
 			for _, item := range orderShop.OrderShopItems {
 				product, err := h.product.GetByID(context.Background(), item.ProductID)
 				if err != nil {
-					log.WithFields(log.Fields{
-						"from": "GetOrderCustomersByCustomerID",
-					}).Error(err.Error())
 					ErrorResponse(err)
 					return
 				}
@@ -135,9 +117,6 @@ func (h *Handler) GetOrderShopsByShopID(console *Console) {
 
 	orders, err := h.order.GetOrderShopByShopID(context.Background(), shopID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "GetOrderShopsByShopID",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -174,9 +153,6 @@ func (h *Handler) UpdateOrderShopStatusByShopID(console *Console) {
 
 	orderShop, err := h.order.GetOrderShopByID(context.Background(), orderShopID)
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "UpdateOrderShopStatusByShopID",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -204,9 +180,6 @@ func (h *Handler) UpdateOrderShopStatusByShopID(console *Console) {
 		Status: &status,
 	})
 	if err != nil {
-		log.WithFields(log.Fields{
-			"from": "UpdateOrderShopStatusByShopID",
-		}).Error(err.Error())
 		ErrorResponse(err)
 		return
 	}
@@ -215,9 +188,6 @@ func (h *Handler) UpdateOrderShopStatusByShopID(console *Console) {
 	for _, item := range order.OrderShopItems {
 		product, err := h.product.GetByID(context.Background(), item.ProductID)
 		if err != nil {
-			log.WithFields(log.Fields{
-				"from": "UpdateOrderShopStatusByShopID",
-			}).Error(err.Error())
 			ErrorResponse(err)
 			return
 		}
